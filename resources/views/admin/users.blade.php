@@ -3,12 +3,12 @@
 @section('title', 'Manajemen User')
 
 @section('content')
-<div class="flex h-screen bg-gray-100 dark:bg-gray-900">
+<div class="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-900">
     <!-- Sidebar -->
     @include('components.sideadmin')
 
     <!-- Main content -->
-    <div class="flex-1 p-10">
+    <div class="flex-1 p-4 pl-16 md:p-10">
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Manajemen User</h1>
 
         <div class="mb-4 flex justify-between items-center">
@@ -18,7 +18,7 @@
             <input type="text" id="searchUser" placeholder="Cari user..." class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-200 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 w-1/3">
         </div>
 
-        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden overflow-x-auto">
             <table id="userTable" class="min-w-full leading-normal">
                 <thead>
                     <tr>

@@ -16,6 +16,9 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\BarangController;
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Petugas\PetugasController;
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
@@ -34,4 +37,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // User Routes
     Route::resource('admin/users', UserController::class)->names('admin.users');
     Route::get('/admin/users/search', [UserController::class, 'search'])->name('admin.users.search');
+
+    // Transaksi Routes
+    Route::resource('admin/transaksi', TransaksiController::class)->only(['index', 'destroy', 'create', 'store', 'show', 'edit', 'update'])->names('admin.transaksi');
+    Route::get('/admin/transaksi/search', [TransaksiController::class, 'search'])->name('admin.transaksi.search');
+
+    // Laporan Routes
+    Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('admin.laporan.index');
+    Route::get('/admin/laporan/monthly', [LaporanController::class, 'generateMonthly'])->name('admin.laporan.monthly');
+    Route::get('/admin/laporan/annual', [LaporanController::class, 'generateAnnual'])->name('admin.laporan.annual');
+});
+
+Route::middleware(['auth', 'role:petugas'])->group(function () {
+    Route::get('/petugas/dashboard', [PetugasController::class, 'index'])->name('petugas.dashboard');
+    Route::get('/petugas/barang', [PetugasController::class, 'barangIndex'])->name('petugas.barang.index');
+    Route::get('/petugas/barang/search', [PetugasController::class, 'barangSearch'])->name('petugas.barang.search');
+    Route::get('/petugas/transaksi/create', [PetugasController::class, 'transaksiCreate'])->name('petugas.transaksi.create');
+    Route::post('/petugas/transaksi', [PetugasController::class, 'transaksiStore'])->name('petugas.transaksi.store');
 });

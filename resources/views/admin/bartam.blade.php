@@ -3,12 +3,12 @@
 @section('title', 'Tambah Barang')
 
 @section('content')
-<div class="flex h-screen bg-gray-100 dark:bg-gray-900">
+<div class="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-900">
     <!-- Sidebar -->
     @include('components.sideadmin')
 
     <!-- Main content -->
-    <div class="flex-1 p-10">
+    <div class="flex-1 p-4 pl-16 md:p-10">
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Tambah Barang</h1>
 
         <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
