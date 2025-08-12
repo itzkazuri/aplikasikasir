@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\PageController;
+
+Route::get('/', [PageController::class, 'welcome']);
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -55,3 +55,7 @@ Route::middleware(['auth', 'role:petugas'])->group(function () {
     Route::get('/petugas/transaksi/create', [PetugasController::class, 'transaksiCreate'])->name('petugas.transaksi.create');
     Route::post('/petugas/transaksi', [PetugasController::class, 'transaksiStore'])->name('petugas.transaksi.store');
 });
+
+Route::get('/aboutus', [PageController::class, 'about']);
+
+Route::get('/kenapa-kami', [PageController::class, 'whyUs']);

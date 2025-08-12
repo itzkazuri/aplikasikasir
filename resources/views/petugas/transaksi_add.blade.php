@@ -1,6 +1,7 @@
 @extends('petugas.app')
 
 @section('title', 'Tambah Transaksi')
+<link rel="icon" href="{{ asset('logotoko.ico') }}" type="image/x-icon">
 
 @section('content')
 <div class="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-900">
