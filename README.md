@@ -1,61 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Simple Cashier Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based cashier application built with the Laravel framework. It provides a simple interface for managing products, users, and transactions, with different roles for administrators and clerks.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Features](#features)
+- [User Roles](#user-roles)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Database Schema](#database-schema)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Authentication**: Secure user login and logout.
+- **Product Management**: Admins can create, read, update, and delete products (CRUD).
+- **User Management**: Admins can manage user accounts (CRUD).
+- **Transaction Management**: Admins can manage sales transactions (CRUD). Clerks can create new transactions.
+- **Reporting**: Admins can generate monthly and annual sales reports.
+- **Search**: Functionality to search for products, users, and transactions.
 
-## Learning Laravel
+## User Roles
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The application has two defined user roles:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1.  **Admin**: Has full access to all application features, including user and product management, all transaction operations, and report generation.
+2.  **Petugas (Clerk)**: Has limited access. Can view products and create new sales transactions.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Tech Stack
 
-## Laravel Sponsors
+- **Backend**: PHP 8.2, Laravel 12
+- **Frontend**: Blade templates, standard CSS/JS
+- **Database**: SQLite (default, configurable in `.env`)
+- **Dependencies**:
+    - `barryvdh/laravel-dompdf`: For generating PDF reports.
+    - `maatwebsite/excel`: (Likely for future Excel export functionality).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Installation
 
-### Premium Partners
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/itzkazuri/aplikasikasir.git
+    cd kasir-sederhana
+    ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2.  **Install dependencies:**
+    ```bash
+    composer install
+    npm install
+    ```
 
-## Contributing
+3.  **Environment Setup:**
+    - Copy the example environment file:
+      ```bash
+      cp .env.example .env
+      ```
+    - Generate an application key:
+      ```bash
+      php artisan key:generate
+      ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4.  **Database Migration:**
+    - Create the `database.sqlite` file:
+      ```bash
+      touch database/database.sqlite
+      ```
+    - Run the database migrations to create the tables:
+      ```bash
+      php artisan migrate
+      ```
 
-## Code of Conduct
+5.  **Seed the database (Optional):**
+    - If you want to populate the database with initial data:
+      ```bash
+      php artisan db:seed
+      ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6.  **Run the development server:**
+    ```bash
+    php artisan serve
+    ```
+    The application will be available at `http://127.0.0.1:8000`.
 
-## Security Vulnerabilities
+## Database Schema
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The application uses the following main tables:
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-   `users`: Stores user information (`username`, `password`, `role`, etc.).
+-   `barang`: Stores product information (`kode_barang`, `nama_barang`, `harga`, `stok`, etc.).
+-   `transaksi`: Stores main transaction data (`kode_transaksi`, `user_id`, `total_bayar`, etc.).
+-   `detail_transaksi`: Stores the individual items for each transaction, linking `transaksi` and `barang`.
