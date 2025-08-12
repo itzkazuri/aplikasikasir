@@ -39,7 +39,7 @@ The application has two defined user roles:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/aplikasikasir
+    git clone https://github.com/itzkazuri/aplikasikasir
     cd aplikasikasir
     ```
 
