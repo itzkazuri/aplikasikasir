@@ -30,7 +30,7 @@ The application has two defined user roles:
 
 - **Backend**: PHP 8.2, Laravel 12
 - **Frontend**: Blade templates, standard CSS/JS
-- **Database**: SQLite (default, configurable in `.env`)
+- **Database**: MySQL
 - **Dependencies**:
     - `barryvdh/laravel-dompdf`: For generating PDF reports.
     - `maatwebsite/excel`: (Likely for future Excel export functionality).
@@ -39,7 +39,7 @@ The application has two defined user roles:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/itzkazuri/aplikasikasir.git
+    git clone https://github.com/your-username/kasir-sederhana.git
     cd kasir-sederhana
     ```
 
@@ -59,11 +59,9 @@ The application has two defined user roles:
       php artisan key:generate
       ```
 
-4.  **Database Migration:**
-    - Create the `database.sqlite` file:
-      ```bash
-      touch database/database.sqlite
-      ```
+4.  **Database Setup:**
+    - Open the `.env` file and configure your MySQL database connection details (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD).
+    - Create the database in your MySQL client.
     - Run the database migrations to create the tables:
       ```bash
       php artisan migrate
