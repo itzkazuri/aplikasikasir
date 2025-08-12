@@ -39,14 +39,14 @@ The application has two defined user roles:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/kasir-sederhana.git
-    cd kasir-sederhana
+    git clone https://github.com/your-username/aplikasikasir
+    cd aplikasikasir
     ```
 
 2.  **Install dependencies:**
     ```bash
     composer install
-    npm install
+    pnpm install
     ```
 
 3.  **Environment Setup:**
